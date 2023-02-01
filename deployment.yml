@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: toolchain-service
+spec:
+  type: ClusterIp
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30004
+  selector:
+    app: toolchain-hello-world
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toolchain-deploy
+spec:
+  selector:
+    matchLabels:
+      app: toolchain-hello-world
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: toolchain-hello-world
+    spec:
+      containers:
+        - name: toolchain-hello-world
+          image: private.us.icr.io/sfripp-imgs/sfripp-toolchain-hello-world
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+          - name: all-icr-io
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: toolchain-ingress
+spec:
+  ingressClassName: toolchain-ingress
+  rules:
+    - host: build-labs-latam-iks-2bef1f4b4097001da9502000c44fc2b2-0000.us-south.containers.appdomain.cloud
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: toolchain-service
+                port:
+                  number: 8080
