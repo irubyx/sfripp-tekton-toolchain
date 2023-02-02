@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: toolchain-hello-world
-          image: private.us.icr.io/sfripp-imgs/sfripp-toolchain-hello-world
+          image: us.icr.io/sfripp-imgs/sfripp-toolchain-hello-world
           ports:
             - containerPort: 8080
       imagePullSecrets:
