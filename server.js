@@ -7,7 +7,7 @@ const HOST = "0.0.0.0"
 // App
 const app = express()
 app.get("/", (req, res) => {
-    const msg = process.env.persona ? process.env.persona : 'testeo'
+    const msg = process.env.persona ? process.env.persona : 'from Tekton Toolchain'
     res.send(`Hello ${msg}!`)
 })
 
