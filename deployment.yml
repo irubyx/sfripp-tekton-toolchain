@@ -37,7 +37,7 @@ metadata:
   name: tekton-toolchain-service
 spec:
   rules:
-  - host: tekton.build-labs-latam-iks-2bef1f4b4097001da9502000c44fc2b2-0000.us-south.containers.appdomain.cloud
+  - host: build-labs-latam-iks-2bef1f4b4097001da9502000c44fc2b2-0000.us-south.containers.appdomain.cloud
     http:
       paths:
       - path: /
