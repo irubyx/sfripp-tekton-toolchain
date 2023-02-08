@@ -10,10 +10,10 @@ spec:
   template:
     metadata:
       labels:
-        app: toolchain-hello-world
+        app: tekton-toolchain-hello-world
     spec:
       containers:
-        - name: toolchain-hello-world
+        - name: tekton-toolchain-hello-world
           image: us.icr.io/sfripp-imgs/sfripp-tekton-toolchain-hello-world
           ports:
             - containerPort: 8080
